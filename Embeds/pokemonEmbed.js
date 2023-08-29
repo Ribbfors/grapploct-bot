@@ -3,7 +3,6 @@ const { capitalizeName } = require("../utils/capitalizeName.js");
 const { trimWeightHeight } = require("../utils/trimWeightHeight.js");
 
 const pokemonEmbed = (data) => {
-  console.log(data.stats);
   return new EmbedBuilder()
     .setTitle(data.name.charAt(0).toUpperCase() + data.name.slice(1))
     .setDescription(`No. ${data.id}`)
