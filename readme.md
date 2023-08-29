@@ -18,4 +18,4 @@ Therefore I created a bot that helps us get information faster and/or enhancing 
 
 In a near future it will also be able to fetch the latest games played for a user in the game of Smite and also fetch server data through a cronjob to see if game servers are functioning.
 
-Feel free to use and modify this bot as it pleases.
+Feel free to use and modify this bot as it pleases you.
