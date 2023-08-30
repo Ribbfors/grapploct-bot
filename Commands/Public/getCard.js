@@ -1,6 +1,6 @@
 const axios = require("axios");
-const { SlashCommandBuilder, time } = require("discord.js");
-const { pokemonCardEmbed } = require("../../Embeds/pokemonCardEmbed.js");
+const { SlashCommandBuilder } = require("discord.js");
+const pokemonCardEmbed = require("../../Embeds/pokemonCardEmbed.js");
 
 module.exports = {
   data: new SlashCommandBuilder()
@@ -37,11 +37,11 @@ module.exports = {
         .setRequired(true)
     ),
   async execute(interaction) {
+    const pokemon = interaction.options.getString("pokemon").toLowerCase();
     try {
-      const pokemon = interaction.options.getString("pokemon").toLowerCase();
       const set = interaction.options.getString("set");
 
-      const fetchPokemon = axios.get(
+      const fetchPokemon = await axios.get(
         `https://api.pokemontcg.io/v2/cards?q=set.series:${set} name:${pokemon}`
       );
 
@@ -49,14 +49,17 @@ module.exports = {
 
       const timeoutPromise = new Promise((resolve, reject) => {
         const timer = setTimeout(() => {
-          clearTimeout(timer); // Clear the timeout since we're resolving the promise
+          clearTimeout(timer);
           timeout = true;
-          reject(new Error("An error has occurred."));
-        }, 3000);
+          reject();
+        }, 2400);
       });
 
       try {
         const result = await Promise.race([fetchPokemon, timeoutPromise]);
+
+        if (result.data.data.length === 0)
+          return await interaction.reply(`${pokemon} dosen't exist.`);
         if (timeout) {
           await interaction.deferReply();
           await interaction.editReply({
@@ -68,7 +71,7 @@ module.exports = {
           });
         }
       } catch (error) {
-        await interaction.reply("API call encountered an error.");
+        throw new Error(error.message);
       }
     } catch (error) {
       await interaction.reply(

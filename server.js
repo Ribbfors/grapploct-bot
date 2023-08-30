@@ -17,8 +17,8 @@ const {
   GuildMessageReactions,
 } = GatewayIntentBits;
 const { User, Message, GuildMember, ThreadMember } = Partials;
-const { loadEvents } = require("./Handlers/eventHandler");
-const { loadCommands } = require("./Handlers/commandHandler");
+const loadEvents = require("./Handlers/eventHandler");
+const loadCommands = require("./Handlers/commandHandler");
 
 const client = new Client({
   intents: [

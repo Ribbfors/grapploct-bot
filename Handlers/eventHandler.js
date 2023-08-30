@@ -1,6 +1,7 @@
-function loadEvents(client) {
-  const ascii = require("ascii-table");
-  const fs = require("fs");
+const ascii = require("ascii-table");
+const fs = require("fs");
+
+const loadEvents = (client) => {
   const table = new ascii().setHeading("Event", "Status");
 
   const folders = fs.readdirSync("./Events");
@@ -30,7 +31,7 @@ function loadEvents(client) {
       continue;
     }
   }
-  return console.log(table.toString(), "\nLoaded events");
-}
+  console.log(table.toString(), "\nLoaded events");
+};
 
-module.exports = { loadEvents };
+module.exports = loadEvents;

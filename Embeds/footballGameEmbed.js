@@ -41,4 +41,4 @@ const footballGameEmbed = (data) => {
     ]);
 };
 
-module.exports = { footballGameEmbed };
+module.exports = footballGameEmbed;

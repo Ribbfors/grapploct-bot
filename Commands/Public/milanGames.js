@@ -1,6 +1,6 @@
 const axios = require("axios");
 const { SlashCommandBuilder } = require("discord.js");
-const { footballGameEmbed } = require("../../Embeds/footballGameEmbed.js");
+const footballGameEmbed = require("../../Embeds/footballGameEmbed.js");
 
 module.exports = {
   data: new SlashCommandBuilder()

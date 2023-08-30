@@ -1,6 +1,7 @@
-function loadCommands(client) {
-  const ascii = require("ascii-table");
-  const fs = require("fs");
+const ascii = require("ascii-table");
+const fs = require("fs");
+
+const loadCommands = (client) => {
   const table = new ascii().setHeading("Commands", "Status");
 
   let commandsArray = [];
@@ -23,7 +24,7 @@ function loadCommands(client) {
   }
   client.application.commands.set(commandsArray);
 
-  return console.log(table.toString(), "\nLoaded commands");
-}
+  console.log(table.toString(), "\nLoaded commands");
+};
 
-module.exports = { loadCommands };
+module.exports = loadCommands;

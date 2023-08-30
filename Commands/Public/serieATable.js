@@ -1,6 +1,7 @@
 const axios = require("axios");
 const { SlashCommandBuilder } = require("discord.js");
-const { tableEmbed } = require("../../Embeds/tableEmbed.js");
+const tableEmbed = require("../../Embeds/tableEmbed.js");
+
 module.exports = {
   data: new SlashCommandBuilder()
     .setName("seriea")

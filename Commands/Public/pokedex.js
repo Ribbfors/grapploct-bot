@@ -1,6 +1,6 @@
 const axios = require("axios");
 const { SlashCommandBuilder } = require("discord.js");
-const { pokemonEmbed } = require("../../Embeds/pokemonEmbed.js");
+const pokemonEmbed = require("../../Embeds/pokemonEmbed.js");
 
 module.exports = {
   data: new SlashCommandBuilder()
@@ -19,7 +19,7 @@ module.exports = {
       if (pokemon === "giratina") {
         pokemon = "giratina-altered";
       }
-      const fetchPokemon = axios.get(
+      const fetchPokemon = await axios.get(
         `https://pokeapi.co/api/v2/pokemon/${pokemon}`
       );
 
@@ -28,7 +28,7 @@ module.exports = {
       const timeoutPromise = new Promise((resolve, reject) => {
         setTimeout(() => {
           timeout = true;
-          reject(new Error("An error has occured."));
+          reject();
         }, 2400);
       });
 
@@ -37,19 +37,17 @@ module.exports = {
 
         const embed = pokemonEmbed(result.data);
         if (timeout) {
-          await interaction.deferReply({ ephemeral: true });
+          await interaction.deferReply();
           await interaction.editReply({ embeds: [embed] });
         } else {
           await interaction.reply({ embeds: [embed] });
         }
       } catch (error) {
-        if (error?.response?.status === 404)
-          return await interaction.reply(`${pokemon} dosen't exist.`);
-
-        console.error(error);
-        await interaction.reply("API call encountered an error.");
+        throw new Error(error);
       }
     } catch (error) {
+      if (error?.response?.status === 404)
+        return await interaction.reply(`${pokemon} dosen't exist.`);
       await interaction.reply(
         "There was an error trying to execute that command!"
       );

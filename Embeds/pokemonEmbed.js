@@ -1,6 +1,6 @@
 const { EmbedBuilder } = require("discord.js");
-const { capitalizeName } = require("../utils/capitalizeName.js");
-const { trimWeightHeight } = require("../utils/trimWeightHeight.js");
+const capitalizeName = require("../utils/capitalizeName.js");
+const trimWeightHeight = require("../utils/trimWeightHeight.js");
 
 const pokemonEmbed = (data) => {
   return new EmbedBuilder()
@@ -38,4 +38,4 @@ const pokemonEmbed = (data) => {
     ]);
 };
 
-module.exports = { pokemonEmbed };
+module.exports = pokemonEmbed;

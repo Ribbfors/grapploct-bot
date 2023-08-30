@@ -30,4 +30,4 @@ const pokemonCardEmbed = (data) => {
     .setImage(data.images.large || data.images.small || " ");
 };
 
-module.exports = { pokemonCardEmbed };
+module.exports = pokemonCardEmbed;

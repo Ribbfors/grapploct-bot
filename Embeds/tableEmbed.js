@@ -16,4 +16,4 @@ const tableEmbed = (data) => {
     ]);
 };
 
-module.exports = { tableEmbed };
+module.exports = tableEmbed;
