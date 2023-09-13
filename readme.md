@@ -7,7 +7,7 @@
 One of my favourite places to spend time with my friends online is Discord.\
 Therefore I created a bot that helps us get information faster and/or enhancing our experience anyhow.
 
-## **What can** **Grapploct** **do?**🐙
+## **What can** Grapploct do?🐙
 
 - Fetch football results and upcoming fixtures
 - Show football tables
